@@ -22,13 +22,13 @@ namespace ej2
         }
         static private void MostrarPantallaCalcularYMostrarMontoYPorcentajePorNiña()
         {
-            if (servicio.suma <= 0)
+            if ((servicio.Edad0 + servicio.Edad1 + servicio.Edad2 + servicio.Edad3) > 0)
             {
                 servicio.CalcularMontosYPorcentajesARepartir();
-                Console.WriteLine($"A la niña 1 le corresponde un {servicio.por0:f2}%, equivalente a ${m0:f2}");
-                Console.WriteLine($"A la niña 2 le corresponde un {por1:f2}%, equivalente a ${m1:f2}");
-                Console.WriteLine($"A la niña 3 le corresponde un {por2:f2}%, equivalente a ${m2:f2}");
-                Console.WriteLine($"A la niña 4 le corresponde un {por3:f2}%, equivalente a ${m3:f2}");
+                Console.WriteLine($"A la niña 1 le corresponde un {servicio.Porcentaje0:f2}%, equivalente a ${Monto0:f2}");
+                Console.WriteLine($"A la niña 2 le corresponde un {Porcentaje1:f2}%, equivalente a ${Monto1:f2}");
+                Console.WriteLine($"A la niña 3 le corresponde un {Porcentaje2:f2}%, equivalente a ${Monto2:f2}");
+                Console.WriteLine($"A la niña 4 le corresponde un {Porcentaje3:f2}%, equivalente a ${Monto3:f2}");
                 Console.ReadKey();
             }
             else { Console.WriteLine("No se ingresaron edades."); Console.ReadKey(); }
@@ -53,55 +53,54 @@ namespace ej2
     internal class Servicio
     {
         #region declaracion
-        static public int e1, e2, e3, e0,suma; 
-        static public double monto, por0, por1, por2, por3, m0, m1, m2, m3;
+        static public int Edad1, Edad2, Edad3, Edad0; 
+        static public double Monto, Porcentaje0, Porcentaje1, Porcentaje2, Porcentaje3, Monto0, Monto1, Monto2, Monto3;
         #endregion
        public Servicio()
         {
-            suma = 0; e0 = 0; e1 = 0; e2 = 0; e3 = 0; monto = 0; m0 = 0; m1 = 0; m2 = 0; m3 = 0;
-            por0 = 0; por1 = 0; por2 = 0; por3 = 0;
+            Edad0 = 0; Edad1 = 0; Edad2 = 0; Edad3 = 0; Monto = 0; Monto0 = 0; Monto1 = 0; Monto2 = 0; Monto3 = 0;
+            Porcentaje0 = 0; Porcentaje1 = 0; Porcentaje2 = 0; Porcentaje3 = 0;
         }
         public double RegistrarMontoARepartir()
         {
             Console.Write("Ingrese el monto a repartir: $");
-            monto = Convert.ToDouble(Console.ReadLine());
-            return monto;
+            Monto = Convert.ToDouble(Console.ReadLine());
+            return Monto;
         }
         public void RegistrarEdad()
         {
             int edad = 0;
             Console.Write("Ingrese edad de la niña: ");
             edad = Convert.ToInt32(Console.ReadLine());
-            suma += edad;
             Console.Write("A qué niña corresponde? ");
             int nroNina = Convert.ToInt32(Console.ReadLine());
             if (nroNina == 1)
             {
-                e0 = edad;
+                Edad0 = edad;
             }
             else if (nroNina == 2)
             {
-                e1 = edad;
+                Edad1 = edad;
             }
             else if (nroNina == 3)
             {
-                e2 = edad;
+                Edad2 = edad;
             }
             else if (nroNina == 4)
             {
-                e3 = edad;
+                Edad3 = edad;
             }
         }
         public void CalcularMontosYPorcentajesARepartir()
         {
-            por0 = 1.0 * (e0 / (double)suma) * 100;
-            por1 = 1.0 * (e1 / (double)suma) * 100;
-            por2 = 1.0 * (e2 / (double)suma) * 100;
-            por3 = 1.0 * (e3 / (double)suma) * 100;
-            m0 = (por0 * monto) / 100;
-            m1 = (por1 * monto) / 100;
-            m2 = (por2 * monto) / 100;
-            m3 = (por3 * monto) / 100;
+            Porcentaje0 = 1.0 * (Edad0 / (double)Edad0 + Edad1 + Edad2 + Edad3) * 100;
+            Porcentaje1 = 1.0 * (Edad1 / (double)Edad0 + Edad1 + Edad2 + Edad3) * 100;
+            Porcentaje2 = 1.0 * (Edad2 / (double)Edad0 + Edad1 + Edad2 + Edad3) * 100;
+            Porcentaje3 = 1.0 * (Edad3 / (double)Edad0 + Edad1 + Edad2 + Edad3) * 100;
+            Monto0 = (Porcentaje0 * Monto) / 100;
+            Monto1 = (Porcentaje1 * Monto) / 100;
+            Monto2 = (Porcentaje2 * Monto) / 100;
+            Monto3 = (Porcentaje3 * Monto) / 100;
         }
     }
 }
